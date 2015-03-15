@@ -58,8 +58,13 @@ var host = Host({ title: 'web2', one: 2, two: 3 });
 
 var order = Executor.orderDependenciesForObject(host);
 var catalog = ResourceIndex.getCatalog();
-for (var i in order) {
-    var obj = catalog[order[i]];
-    console.log(i + '. ' + obj._type + ': ' + (obj.path||obj.name||obj.title));
-}
-console.log(order);
+
+tools = {
+    exec: function(cmd) { console.log(">>>: " + cmd); },
+    rm: function(path) { console.log(">>>: rm " + path); },
+    link: function(src, dest) { console.log(">>>: ln -s " + src + ' ' + dest); },
+    writeFile: function(path, contents) { console.log(">>>: cat $FILE > " + path); },
+    chmod: function(path, perms) { console.log(">>>: chmod "+path+" "+perms); },
+};
+
+Executor.processQueue(order, ResourceIndex, tools);

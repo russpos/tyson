@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "underscore": "1.8.2"
+    "underscore": "1.8.2",
+    "exec-sync": "~0.1.6"
   }
 }
