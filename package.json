@@ -10,6 +10,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "underscore": "1.8.2",
-    "exec-sync": "~0.1.6"
+    "exec-sync": "~0.1.6",
+    "colors": "~1.0.3"
   }
 }

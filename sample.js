@@ -59,12 +59,18 @@ var host = Host({ title: 'web2', one: 2, two: 3 });
 var order = Executor.orderDependenciesForObject(host);
 var catalog = ResourceIndex.getCatalog();
 
-tools = {
-    exec: function(cmd) { console.log(">>>: " + cmd); },
+var os = {
+    sh: {
+        run:  function(cmd) { console.log(">>>: " + cmd); return 0; },
+        exec: function(cmd) { console.log(">>>: " + cmd); return 0; },
+    },
+
     rm: function(path) { console.log(">>>: rm " + path); },
     link: function(src, dest) { console.log(">>>: ln -s " + src + ' ' + dest); },
     writeFile: function(path, contents) { console.log(">>>: cat $FILE > " + path); },
     chmod: function(path, perms) { console.log(">>>: chmod "+path+" "+perms); },
+    chown: function(path, owner, group) { console.log(">>>: chown " + path); },
 };
 
-Executor.processQueue(order, ResourceIndex, tools);
+var hostInfo = { hostname: 'hello world' };
+Executor.processQueue(order, ResourceIndex, os, hostInfo);
