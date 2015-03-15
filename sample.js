@@ -39,16 +39,18 @@ var SiteA = Bundle(function(siteOpts) {
     this.site.dependsOn(apache);
 });
 
-var SiteB = Bundle(function(siteOpts) {
+// Also support syntax where dependencies are passed into
+// the bundle
+var SiteB = Bundle(function(siteOpts, apacheInstance) {
     this.site = new File({
         path: '/etc/httpd/sites-enabled/site-a.conf'
     });
-    this.site.dependsOn(apache);
+    this.site.dependsOn(apacheInstance);
 });
 
 var Host = Bundle(function(hostOpts) {
     this.siteA = SiteA({ title: 'SiteA' });
-    this.siteB = SiteB({ title: 'SiteB' });
+    this.siteB = SiteB({ title: 'SiteB' }, apache);
 });
 
 
