@@ -50,6 +50,8 @@ var StaticSite = Bundle(function(siteOpts, nginxInstance) {
     this.site = new File({
         path: '/etc/nginx/sites-enabled/' + siteOpts.configName + '.conf',
         contents: _.template(staticSiteConf),
+        owner: 'www-data',
+        group: 'www-data',
         templateData: siteOpts
     });
     this.site.dependsOn(nginxInstance);
