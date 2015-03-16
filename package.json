@@ -12,5 +12,12 @@
     "underscore": "1.8.2",
     "exec-sync": "~0.1.6",
     "colors": "~1.0.3"
+  },
+  "devDependencies": {
+    "jslint": "^0.9.0-pre005"
+  },
+
+  "scripts" : {
+      "lint" : "./node_modules/jslint/bin/jslint.js lib/* --color --config=./jslint.conf"
   }
 }
