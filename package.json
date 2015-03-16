@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "lint": "./node_modules/eslint/bin/eslint.js lib/*"
   },
   "author": "",
   "license": "BSD-2-Clause",
@@ -14,10 +14,6 @@
     "colors": "~1.0.3"
   },
   "devDependencies": {
-    "jslint": "^0.9.0-pre005"
-  },
-
-  "scripts" : {
-      "lint" : "./node_modules/jslint/bin/jslint.js lib/* --color --config=./jslint.conf"
+    "eslint": "^0.17.0"
   }
 }
