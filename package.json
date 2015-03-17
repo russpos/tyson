@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "lint": "./node_modules/eslint/bin/eslint.js lib/*"
+    "lint": "./node_modules/eslint/bin/eslint.js lib/*"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "underscore": "1.8.2",
+    "colors": "~1.0.3",
     "exec-sync": "~0.1.6",
-    "colors": "~1.0.3"
+    "q": "^1.2.0",
+    "underscore": "1.8.2"
   },
   "devDependencies": {
     "eslint": "^0.17.0"
