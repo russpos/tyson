@@ -94,4 +94,4 @@ var host = Web({
 // configs, etc.
 var extraData = {};
 
-Executor.provision(host, extraData);
+fs.writeFileSync(__dirname + '/output.sh', Executor.createProvisionScript(host, extraData));
