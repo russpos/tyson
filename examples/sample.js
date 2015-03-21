@@ -1,8 +1,8 @@
-var Bundle = require('./lib/Bundle'),
-    Executor = require('./lib/Executor'),
-    File = require('./lib/File'),
-    Package = require('./lib/Package'),
-    Service = require('./lib/Service'),
+var Bundle = require('../lib/Bundle'),
+    Executor = require('../lib/Executor'),
+    File = require('../lib/File'),
+    Package = require('../lib/Package'),
+    Service = require('../lib/Service'),
     _ = require('underscore'),
     fs = require('fs');
 
