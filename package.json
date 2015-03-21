@@ -1,18 +1,21 @@
 {
-  "name": "provisioner-thing",
-  "version": "0.0.0",
-  "description": "",
+  "name": "tyson",
+  "version": "0.0.1",
+  "description": "A light-weight JavaScript driven server provisioning tool",
   "main": "index.js",
   "scripts": {
-      "lint": "./node_modules/eslint/bin/eslint.js lib/*"
+      "lint" : "./node_modules/eslint/bin/eslint.js lib/*",
+      "test" : "./node_modules/jasmine-node/bin/jasmine-node --coffee --color --verbose --test-dir ./tests --matchall",
+      "test-drive" : "./node_modules/jasmine-node/bin/jasmine-node --coffee --color --verbose --test-dir ./tests --matchall --autotest --watch ./lib"
   },
-  "author": "",
+  "author": "Russ Posluszny <russ@russposluszny.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
     "underscore": "1.8.2",
     "colors": "~1.0.3"
   },
   "devDependencies": {
-    "eslint": "^0.17.0"
+    "eslint": "^0.17.0",
+    "jasmine-node": "~1.14.5"
   }
 }
