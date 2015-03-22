@@ -1,9 +1,14 @@
-Resource = require('../lib/Resource')
+Resource = require '../lib/Resource'
+_ = require 'underscore'
+matchers = require './custom_matchers'
 
 describe 'Resource', ->
 
+  beforeEach ->
+    @addMatchers matchers
+
   it 'it is a function', ->
-    expect(Resource instanceof Function).toBe true
+    expect(Resource).toBeFunction()
 
   describe 'createType', ->
     beforeEach ->
@@ -19,25 +24,46 @@ describe 'Resource', ->
       @instance = new @NewResourceType @instanceSettings
 
     it 'is a Resource', ->
-      expect(@instance instanceof @NewResourceType).toBe true
-      expect(@instance instanceof Resource).toBe true
+      expect(@instance).toBeInstanceOf @NewResourceType
+      expect(@instance).toBeInstanceOf Resource
 
     it 'has a getKey function', ->
-      expect(@instance.getKey instanceof Function).toBe true
+      expect(@instance.getKey).toBeFunction()
 
-    it 'returns an integer', ->
-      key = @instance.getKey()
-      # TODO - actually test something 
+    describe 'getKey', ->
+      it 'returns an integer', ->
+        key = @instance.getKey()
+        expect(key).toBeNumber()
+
+    describe 'dependsOn', ->
+
+      beforeEach ->
+        @a = new @NewResourceType
+          dependsOn: [@instance]
+        @data = @a.export()
+
+      it 'can export all the dependencies given', ->
+        expect(@data.dependencies).toHaveLength 1
+
+      it 'has the dependencies referenced by their key', ->
+        expect(@data.dependencies[0]).toEqual @instance.getKey()
+
+      it 'can add new dependencies programaticly', ->
+        b = new @NewResourceType {}
+        @a.dependsOn b
+        @data = @a.export()
+
+        expect(@data.dependencies).toHaveLength 2
 
     describe 'export', ->
       beforeEach ->
         @data = @instance.export()
 
       it 'exports an object', ->
-        expect(@data instanceof Object).toBe true
+        expect(@data).toBeObject()
 
       it 'has a dependencies array', ->
-        expect(@data.dependencies instanceof Array).toBe true
+        expect(@data.dependencies).toBeArray()
 
       it 'has settings', ->
         expect(@data.name).toEqual "Rover"
